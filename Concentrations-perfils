@@ -1,0 +1,60 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+
+#Author: Oscar M. Escorcia Omar
+
+x = pd.read_excel('concentrationperfil.xlsx', sheet_name= 'Hoja2' , usecols = ['num'])
+y = pd.read_excel('concentrationperfil.xlsx', sheet_name= 'Hoja2' , usecols = ['nonp38-150'])
+y2 = pd.read_excel('concentrationperfil.xlsx', sheet_name= 'Hoja2', usecols = ['nonp150-250'])
+y3 = pd.read_excel('concentrationperfil.xlsx',sheet_name= 'Hoja2' , usecols = ['nonp250-500'])
+
+
+Y = [50]*110
+
+Y_1 = [int(50*0.90)]*110
+Y_2 = [int(50.0*1.1)]*110
+
+#fig, ((ax1,ax2), (ax3)) = plt.subplots(2,2)
+#fig.subplots_adjust(left=0.2, wspace=0.6)
+
+
+fig, ax1 = plt.subplots(figsize = (1,1), dpi=150)
+ax1.plot(x,y, 'or')
+#ax1.plot(x,y2, 'om')
+#ax1.plot(x,y3, 'o')
+ax1.plot(x,Y, '--')
+ax1.plot(x,Y_1,'--')
+ax1.plot(x,Y_2,'--')
+plt.xlim(0,110)
+plt.ylim(40,60)
+plt.ylabel( 'EIOT predictions (%w/w)', fontsize=13)
+plt.xlabel('Time(s)   50 %w/w', fontsize=13)
+
+plt.show()
+
+fig, ax2 = plt.subplots(figsize = (1,1), dpi=150)
+ax2.plot(x,y2, 'ob')
+ax2.plot(x,Y, '--')
+ax2.plot(x,Y_1,'--')
+ax2.plot(x,Y_2,'--')
+plt.xlim(0,110)
+plt.ylim(40,60)
+plt.ylabel( 'EIOT predictions (%w/w)', fontsize=13)
+plt.xlabel('Time(s)   50 %w/w', fontsize=13)
+plt.show()
+
+fig, ax3 = plt.subplots(figsize = (1,1), dpi=150)
+ax3.plot(x,y3, 'om')
+ax3.plot(x,Y, '--')
+ax3.plot(x,Y_1,'--')
+ax3.plot(x,Y_2,'--')
+plt.xlim(0,110)
+plt.ylim(40,60)
+plt.ylabel( 'EIOT predictions (%w/w)', fontsize=13)
+plt.xlabel('Time(s)   50 %w/w', fontsize=13)
+plt.show()
+
+im1 = Image.open(r'/Users/OSCAR/PycharmProjects/pythonProject3/Figure_1.png')
+im1.save(r'/Users/OSCAR/PycharmProjects/pythonProject3/Figure_1.jpg')
